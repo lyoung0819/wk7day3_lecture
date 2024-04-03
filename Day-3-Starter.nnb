@@ -1,0 +1,2490 @@
+{
+    "cells": [
+        {
+            "language": "markdown",
+            "source": [
+                "# Index for Intro JS Day 3"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "[Switch Case](#switch)<br>\r\n[Objects](#object)<br>\r\n&emsp;[Deleting Keys](#del)<br>\r\n&emsp;[Exercise #1](#ice1)<br>\r\n&emsp;[Destructuring](#destruct)<br>\r\n&emsp;[Spread Operator (...)](#spread)<br>\r\n&emsp;[Rest Operator (...)](#rest)<br>\r\n&emsp;[Exercise #2](#ice2)<br>\r\n&emsp;[Optional Chaining (.?)](#chain)<br>\r\n&emsp;[Null Coalescing Operator (??)](#nco)<br>\r\n&emsp;[Object Equality](#objeq)<br>\r\n&emsp;[Testing Empty Objects](#emptyobj)<br>\r\n[For Loops with Objects](#loop)<br>\r\n&emsp;[Traditional Loop](#tradloop)<br>\r\n&emsp;[Exercise #3](#ice3)<br>\r\n&emsp;[for in Loop](#forin)<br>\r\n&emsp;[Exercise #4](#ice4)<br>\r\n[this keyword](#this)<br>\r\n[Checking Object/Array Type](#typecheck)<br>\r\n[ES5 Object Prototypes](#proto)<br>\r\n&emsp;[New Keyword](#new)<br>\r\n[Closures](#closure)<br>\r\n[Class keyword](#class)<br>\r\n&emsp;[Inheritance](#inherit)<br>\r\n&emsp;[Exercise #5](#ice5)<br>\r\n[JS and the Call Stack](#stack)<br>\r\n[Call Back Functions](#callback)<br>\r\n[Promises](#promise)<br>\r\n&emsp;[Async Await](#async)<br>\r\n&emsp;[Exercise #6](#ice6)<br>\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "console.log('Hello World')"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Hello World",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "<a id=\"switch\"></a>\n## Switch Case Statement"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "The Switch Case Statement allows us to replace long if/else chains with more readable code. It provides the additional benefit of allowing fall-through cases.\n\nHowever, it will only check for strict equality(===), so we cannot use greater than or less than in a switch.  Also, \"1\" and 1 will not evaluate as the same case because it implements strict equality.\n\nSyntax:\n```\nswitch(variable_to_compare_to){\n    case [Value to test equality on]:\n        // do stuff\n        //optional break/return\n    default:\n        // basically the else statement, what to do if none of the cases match\n        //do stuff\n}\n```"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "<strong>Note: </strong> In this example we are comparing day (integer of the day from the Date function) to the number 0-6 and executing a console.log for every different day.  Also note, we are breaking after every case to prevent fall-through."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "let today = new Date();\nlet day = today.getDay()\nconsole.log(day)"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "3",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "// SWITCH CASES ONLY LOOK AT EQUALITY (if something === something specific).. i.e. you cannot do 'case a > b:' \n\n// SWITCH cases are another way of writing conditional statements like if/elif/else to determine EQUALITY: \nday = 4;\n\nswitch(day){\n    case 0:\n        console.log('It is Sunday, time to rest')\n        break;\n    case 1:\n        console.log(\"Write code... it's Monday!\")\n        break;\n    case 2:\n        console.log('Testing Tuesday')\n        break;\n    case 3:\n        console.log('Testing more code becauses its HUMP DAY!')\n        break;\n    case 4:\n        console.log('Write a feature for our app on Thursday')\n        break;\n    case 5:\n        console.log('Test a feature for Feature Friday')\n        break;\n    case 6:\n        console.log('Sleep all day, party all night!')\n        break;\n    default: // similar to the 'else' \n        console.log('This is not a real day of the week')\n}\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Write a feature for our app on Thursday",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "### Fall Through Conditions"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "In the previous examples, we used a break statement in every case (default excluded because there is no fall-through conditions for default).\n\nIf we do not include the break, the condition will fall-through to the next case and execute that code as well."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "// In the above, we used switch... case... break.. and default.\n// If we do NOT use a break clause, this is where the fall through comes into play:\n\nconsole.log(`Thank you for purchasing the ${seasonTicketPackage} Ticket Plan. It includes: `)\nlet seasonTicketPackage = 'Double Platinum';\nswitch(seasonTicketPackage){\n    case 'Double Platinum':\n        console.log('Championship Game Tickets Included')\n    case 'Platinum':\n        console.log('Playoff Game Tickets Included')\n    case 'Gold':\n        console.log('Parking Pass Every Game')\n    case 'Silver':\n        console.log('Ticket to Every Home Game')\n}\n\n// Since there is no 'break' statement, it falls through (or waterfalls) everything after the true statement!"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Thank you for purchasing the Gold Ticket Plan. It includes: ",
+                                "Championship Game Tickets Included",
+                                "Playoff Game Tickets Included",
+                                "Parking Pass Every Game",
+                                "Ticket to Every Home Game",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "<a id=\"object\"></a>\n\n## Object Type"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "A JavaScript Object is similar to a Python Dictionary.\nThey both store key-value pairs and support dynamically adding keys and removing keys."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "### Instantiating"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "Keys in JS don't need to surround the keys with quotes, however you can."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "// In python:\n// person = {'name':'Lexie', 'city':'St Louis'} \n\n// In JS, we don't need quotations around the keys (you can have them, but not necessary)\n\nlet person1 = {\n    \"name\" : \"Janet\",\n    \"age\" : 55,\n    \"city\" : \"Louisville\"\n}\n\nconsole.log(person1);\n\n// OR \n\nlet person2 = {\n    name : 'Lexie',\n    age : 27,\n    city: 'St Louis'\n}\nconsole.log(person2)"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "{ name: 'Janet', age: 55, city: 'Louisville' }",
+                                "{ name: 'Lexie', age: 27, city: 'St Louis' }",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "### console.table"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "Sometimes reading the properties of an object is difficult using console.log, so we can use console.table to see an easier to read result"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "// We've been using console.log() to log as is:\n\n// We also have console.table() \nconsole.table(person1);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "┌─────────┬──────────────┐",
+                                "│ (index) │ Values       │",
+                                "├─────────┼──────────────┤",
+                                "│ name    │ 'Janet'      │",
+                                "│ age     │ 55           │",
+                                "│ city    │ 'Louisville' │",
+                                "└─────────┴──────────────┘",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "console.table(person2);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "┌─────────┬────────────┐",
+                                "│ (index) │ Values     │",
+                                "├─────────┼────────────┤",
+                                "│ name    │ 'Lexie'    │",
+                                "│ age     │ 27         │",
+                                "│ city    │ 'St Louis' │",
+                                "└─────────┴────────────┘",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "### Accessing"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "JS Allows us to use bracket notation (like python) or dot notation (like python classes) to access our object properties"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "//bracket notation \nconsole.log(person1['name']);\n\n// OR...\n\n// dot notation!\nconsole.log(person2.age);\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Janet",
+                                "27",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "<strong>Note: </strong>Using a key name stored in a variable requires us to use bracket notation."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "// if you store a pair in a variable, you must use bracket notation or you will get undefined\n\nlet ageKey = 'age';\n\nconsole.log(person1.ageKey); // this returns undefined\nconsole.log(person1[ageKey]); // returns 55\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "undefined",
+                                "55",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "In JS, you can easily add keys to an object just by referencing the dictionary, keying in your new key and setting it to a value"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "// To add a new property, obj.newKey = value   OR    obj['newKey'] = value\nperson1.isGoodCoder = false;\nconsole.table(person1);\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "┌─────────────┬──────────────┐",
+                                "│ (index)     │ Values       │",
+                                "├─────────────┼──────────────┤",
+                                "│ name        │ 'Janet'      │",
+                                "│ age         │ 55           │",
+                                "│ city        │ 'Louisville' │",
+                                "│ isGoodCoder │ false        │",
+                                "└─────────────┴──────────────┘",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "// Modifying existing properties is the same syntax as adding(like python!)\n// obj.existingKey = value   OR   obj['existingKey'] = value\nconsole.log(`Sending ${person1.name} to Coding Temple...`);\n\nperson1.isGoodCoder = true;\nconsole.table(person1);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Sending Janet to Coding Temple...",
+                                "┌─────────────┬──────────────┐",
+                                "│ (index)     │ Values       │",
+                                "├─────────────┼──────────────┤",
+                                "│ name        │ 'Janet'      │",
+                                "│ city        │ 'Louisville' │",
+                                "│ isGoodCoder │ true         │",
+                                "└─────────────┴──────────────┘",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "<a id=\"delkey\"></a>\n### Deleting keys"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "// we use the delete keyword\n// delete object['property'] OR delete object.property\n\nconsole.table(person1);\ndelete person1.age; \nconsole.table(person1);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "┌─────────────┬──────────────┐",
+                                "│ (index)     │ Values       │",
+                                "├─────────────┼──────────────┤",
+                                "│ name        │ 'Janet'      │",
+                                "│ age         │ 55           │",
+                                "│ city        │ 'Louisville' │",
+                                "│ isGoodCoder │ false        │",
+                                "└─────────────┴──────────────┘",
+                                "┌─────────────┬──────────────┐",
+                                "│ (index)     │ Values       │",
+                                "├─────────────┼──────────────┤",
+                                "│ name        │ 'Janet'      │",
+                                "│ city        │ 'Louisville' │",
+                                "│ isGoodCoder │ false        │",
+                                "└─────────────┴──────────────┘",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "// to loop through the Object, we do the same as in python\n// syntax: obj.key.key\n\nlet sumRandObj = {\n    a: 123,\n    b: 'xyz',\n    c: [4, 5, 6],\n    d: {\n        m: \"Mornin'\",\n        n: 'Night'\n    }\n};\n\nconsole.table(sumRandObj);\nconsole.log(sumRandObj.c);\nconsole.log(sumRandObj.d.m);\n\nconsole.log(sumRandObj.c[2]);\nconsole.log(sumRandObj.c.2); // Doesn't work because you need to use bracket notations with Arrays\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "┌─────────┬───┬───┬───┬───────────┬─────────┬────────┐",
+                                "│ (index) │ 0 │ 1 │ 2 │ m         │ n       │ Values │",
+                                "├─────────┼───┼───┼───┼───────────┼─────────┼────────┤",
+                                "│ a       │   │   │   │           │         │ 123    │",
+                                "│ b       │   │   │   │           │         │ 'xyz'  │",
+                                "│ c       │ 4 │ 5 │ 6 │           │         │        │",
+                                "│ d       │   │   │   │ \"Mornin'\" │ 'Night' │        │",
+                                "└─────────┴───┴───┴───┴───────────┴─────────┴────────┘",
+                                "[ 4, 5, 6 ]",
+                                "Mornin'",
+                                "6",
+                                "[ 4, 5, 6 ] 0.2",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "// Array are Objects - only use Bracket Notation"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "<a id=\"ice1\"></a>\n\n### In Class Exercise #1"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "let person2 = {\n    name: \"Max\",\n    age:31,\n    progLanguages:['JavaScript','Python','C++', 'Java'],\n    favColor: \"Blue\",\n    teams:[\n        {\n            baseball: 'Chicago White Sox',\n            football: 'Chicago Bears',\n            hockey: 'Chicago Blackhawks',\n            basketball:['Chicago Bulls','Chicago Sky'],\n            soccer:['Chicago Fire', 'Naperville Yellowjacks']\n        },\n        {\n            baseball:'Toronto Bluejays',\n            football: 'LA Rams',\n            basketball: 'Milwalkee Bucks',\n            soccer: ['Manchester United','Liverpool']\n        }\n    ]\n}"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "Using the above object print out the following values in the cell underneath the heading."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "##### a) \"Blue\""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "console.log(person2.favColor);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Blue",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "##### b) \"C++\""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "console.log(person2.progLanguages[2]);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "C++",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "##### c) \"LA Rams\""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "console.log(person2.teams[1].football);\n\n// why does brack notation on football not work?"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "LA Rams",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "##### d) \"Chicago Fire\""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "console.log(person2.teams[0].soccer[0]);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Chicago Fire",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "##### e) \"Liverpool\""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "console.log(person2.teams[1].soccer[1]);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Liverpool",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "<a id=\"destruct\"></a>\n\n### Object Destructuring\n\nThis is a very important topic because it is widely used, and in most applications, considered best practice.\n\nThis will allow us to break the keys of a dictionary up into variables when passing to a function"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "#### As Variables"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "<strong>Note: </strong> the variable names must match the names of the keys in the object."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "#### As parameters"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "First, let's remember how this would work when passing an array"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "<b>Now, let's see how this looks with an object without destructuring</b>"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "//Without destructuring\r\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "<b>and with destructuring </b>"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "//With Destructuring \r\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "#### Mixing destructuring with other parameters"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "let personJones={\r\n    firstName:\"Russel\",\r\n    lastName:\"Jones\",\r\n    nickName:\"Ol' Dirty Illegitimate Child\",\r\n    age: 35,\r\n    height:62\r\n}\r\n\r\nlet quote = `Here I go, deep type flow, Jackques Costueau could never get this low.`\r\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "<a id=\"spread\"></a>\n\n#### The Spread Operator"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "The spread operator can be used to copy an object, combine multiple objects, or even to add a new key while copying an object"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "#### Copying"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "#### Adding a key while copying"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "//add an id of 187 to the person object and save it as a new object called newPerson\r\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "#### Combining"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "<strong>Note: </strong> Both Objects have a key of price, Let's see which price gets added to the new object"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "<a id=\"rest\"></a>\n\n### Rest Operator"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "Just like with arrays sometimes you only want to destructure part of your object, you can do this with the rest `...` operator"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "restTestObj={\r\n    id:1,\r\n    title: \"test\",\r\n    body: \"My Test\",\r\n    author: \"Stephen King\"\r\n}\r\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "// If the property is not in the object, the variable will be undefined\r\n\r\nlet country = {\r\n    name: 'USA',\r\n    capital: 'Washington, D.C.',\r\n    founded: 1776\r\n}\r\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "// This:\r\nlet { studentName, grade, teacher } = student;\r\n\r\n// is equivalent to this:\r\nlet studentName = student.studentName;\r\nlet grade = student.grade;\r\nlet teacher = student.teacher;\r\n\r\n\r\n// ^ The above will throw an error because of let declarations (example only)"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "<a id=\"ice2\"></a>\n\n### In Class Assignment #2"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "Create a function called `destructed` that recieves the `destructMe` dictionary using destructuring. Destruct the title body and author and leave the rest of the attributes in a parameter called `others`.\nPrint out the title, body, and author to the console. Then print the entire contents of `others` to the console."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "var destructMe={\r\n    title: \"Intro to JavaScript\",\r\n    body: \"I really wish JavaScript had static type checking\",\r\n    createdOn: new Date(),\r\n    author: \"Kevin Beier\",\r\n    topic: \"Programming\",\r\n    tags: [\"JS\", \"Async\", \"Dynamic Types\"]\r\n}"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "//Solution\r\n\r\n\r\n\r\n\r\n//OUTPUT:\r\n/*\r\nIntro to JavaScript I really wish JavaScript had static type checking Kevin Beier\r\n{\r\n  createdOn: 2023-06-07T16:18:31.133Z,\r\n  topic: 'Programming',\r\n  tags: [ 'JS', 'Async', 'Dynamic Types' ]\r\n}\r\n*/"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "<a id=\"chain\"></a>\n\n### Optional Chaining"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "Imagine you have many of the same object, and you want to key into it.  Now imagine not all objects have that key, and you want to do an operation on every object without getting an error.  Welcome in optional chaining using the `?.`"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "\r\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "movies = [\r\n    { id: 1, title: 'Oppenheimer', releaseYear: 2023, studio: { name: 'Warner Bros'}},\r\n    { id: 2, title: 'The Dark Knight', releaseYear: 2009, studio: { name: 'Sony'}},\r\n    { id: 3, title: 'Gladiator', releaseYear: 2001}\r\n]"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "// condition ? if true : if false\r\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "<a id=\"nco\"></a>\n\n### Nullish Coalescing Operator (??)"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "Often times we want to check the value of something and if it is undefined or null, we want to use a default value instead. The Nullish Coalescing Operator `??` allows just that."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "\r\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "<b>It can be combined with optional chaining</b>"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "\r\n\r\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "<a id=\"objeq\"></a>\n\n## Object Equality"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "Testing whether two object in JS are the same can be rather confusing.\n\nIn JavaScript two Objects are considered equal if they point to the same spot in memory, not if the values are the same"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "In this case the easy way to determine if the values are the same is to compare the id values"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "// Same applies to arrays - must be same object in memory\r\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "<a id=\"emptyobj\"></a>\n\n### Checking for Empty Objects/Arrays"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "// To see if an array is empty, you can use the .length property (remember 0 evaluates to false)\r\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "// To see if an object is empty, first use the keys method to get array of keys, check that length\r\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "<a id=\"loop\"></a>\n\n#### Looping over Objects"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "In python, we have .keys .values and .items. In JS, we have .keys .values and .entries, but instead of them being instance methods on the Dictionary class (like in python), they are static methods of the Object Class (meaning they don't work on the instance but they do work on the class itself)."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "##### .keys()"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "##### .values()"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "##### .entries()"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "<a id=\"tradloop\"></a>\n\n#### Traditional (ES5 and earlier) looping over Object"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "<a id=\"ice3\"></a>\n\n### In Class Assignment #3"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "In the cell provided, create a traditional for loop to loop over all the keys and values in the `herbie` object and log them to the console in the following format:\n\n```\nthe key [key] has the value of [value]\n```"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "var herbie={\r\n    wheels:\"4\",\r\n    color: \"white\",\r\n    make: \"VW\",\r\n    model: \"Beetle\",\r\n    year: 1963,\r\n    number: 53\r\n}"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "//Solution\r\n\r\n\r\n\r\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "<a id=\"forin\"></a>\n##### For in Loop"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "ES6 marked the introduction of the `for in` loop in JS unlike python which uses this to loop over lists, in JS it is used to loop over the keys of an object.\n\n<strong>Remember:</strong> In JS, to loop over a lis,t we can use the `for of` loop.\n\nsyntax:\n```\nfor (let placeholder in myObject){\n    //do stuff\n}\n```"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "var cities = ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix'];\r\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "<a id=\"ice4\"></a>\n### In Class Assignment #4"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "In the cell provided create a `for...in` loop to loop over all the keys and values in the `kit` object and log them to the console in the following format:\n\nIf the value is null use the nullish coalescence to print `\"No Value Given\"` \n\n```\nthe key [key] has the value of [value]\n```"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "var kit={\r\n    wheels:\"4\",\r\n    color: \"black\",\r\n    make: \"Pontiac\",\r\n    model: \"Thunderbird\",\r\n    year: 1981,\r\n    number: null\r\n}"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "//solution\r\n\r\n\r\n\r\n\r\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "### Returning from an arrow function"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "When returning an object literal from a one line arrow function, we have to surround the object with parentheses, otherwise JS sees the braces and assumes it is starting the code block for your arrow function."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "<a id=\"this\"></a>\n### this keyword"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "The `this` keyword in JS is similar to self in Python. It is a way to refer to the parent object or instance.\n\nOne important thing to note is that arrow functions do not bind this to their parent."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "console.log(\"Outside of function:\", this);\r\nconsole.log('--------------------------------------------------------------------------------')\r\nconsole.log(\"Regular Function:\", myTestObj.getThisReg());\r\nconsole.log('--------------------------------------------------------------------------------')\r\n\r\nconsole.log(\"Arrow Function:\", myTestObj.getThisArrow());"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "<a id=\"typecheck\"></a>\n### Checking the type of a variable"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "console.log(typeof testArray) //object\r\nconsole.log(testArray instanceof Array) //true\r\nconsole.log(Array instanceof Object) //true\r\nconsole.log(Array.isArray(testArray)) //true\r\nconsole.log(\"========\")\r\nconsole.log(testArray instanceof Object) //true\r\nconsole.log(testObj instanceof Object)  //true\r\nconsole.log(Array.isArray(testObj)) //false\r\nconsole.log(typeof 'hello') //string\r\nconsole.log(\"========\")\r\nconsole.log(typeof {}) //object\r\nconsole.log('hello' instanceof Object) //False\r\nconsole.log(typeof null); //object\r\nconsole.log(null instanceof Object) //False\r\nconsole.log({key:1} instanceof Object)  //true\r\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "<a id=\"proto\"></a>\n## ES5 Object Prototypes"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "The class keyword wasn't added to JS until ES6, and replaces the functionality we are about to talk about.  You will still see alot of ES5 prototypes in the wild, so be sure to understand what they are doing.\n\nLets build out a JS object to be reuseable."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "<a id=\"new\"></a>\n\n### new keyword"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "The `new` keyword will initialize an object and return it for you.  It will also allow the use of the this keyword"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "#### with the new keyword"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "#### Why did I give the name property realName not name?"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "When working with a function the name property is already assigned to the name of the function"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "The above method works fine, but it has an issue. Every time I make a new person, I have to save all the person's methods to memory. We can define a prototype for all objects to share to prevent wasting memory space. These are stored in memory once, and use the this keyword to find the correct references. This saves tons of memory space, and prototypes should be used with ES5 objects when declaring many instances of the same object."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "#### Possible but bad practice"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "You can modify existing built in prototypes at anytime, but this is bad practice because it leads to confusion, and unforeseen side effects"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "String.prototype.toTitleCase=function() {\r\n  str = this.toLowerCase().split(' ');\r\n  for (var i = 0; i < str.length; i++) {\r\n    str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1); \r\n  }\r\n  return str.join(' ');\r\n}"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "\"hello you kind human\".toTitleCase()"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "<a id=\"class\"></a>\n\n## ES 6 Classes/OOP"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "In ES6, JavaScript finally added classes, allowing traditional Object Oreinted Design.\n\n\nIn python we define a constructor like:\n```\n    def __init__(self, params):\n        self.param=param\n```\nIn JS it would look like:\n```\n    constructor(params){\n        this.params=params\n    }\n```\n\nLike python, Class names are written in PascalCase.\n\nThe keyword `new` is required when initializing an instance as it is what runs the constructor function.\n\n<strong>Note:</strong> Methods need no function keyword."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "<a id=\"inherit\"></a>\n\n### Inheritance "
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "In python, to inherit (or extend) a class, we did something like `class Baby(Human)`. In JS, we use the keyword `extends` ie `class Baby extends Human`.\n\nA Parent Class is often also called a super class.\n\nIn a child class the keyword super represents the parent class.  \n\nOften it is use to invoke the parent constructor.\njust like in python when we did:\n\n```\nsuper().__init__(params)\n```\n\nin JS this becomes\n\n```\nsuper(params)\n```\n\n<strong>Note:</strong> Giving the returnInfo to the baby class creates a method override, so now all the members of class Baby will now returnInfo in a new way, while members of the Human class will retain their original returnInfo method."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "// Inheritance flows down. Human instances will not have the .walk method\r\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "<a id=\"super\"></a>\n\n### super keyword"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "Another use of the super keyword is to call methods from the parent class"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "<b> In the Typescript Section of this course we will go into more detail on OOP design principals</b>"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "<a id=\"ice5\"></a>\n\n### In Class Assignment #5"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "Create a Class to represent all Animals.  These animals have a name and age attributes, and they have functions that will talk and walk.\n\nCreate a class that inherehits from the Animal Class called Cat and one called Dog and override the methods for talk to an appropriate method for a Cat or Dog talking and retains the method for walk."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "\r\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "<a id=\"closure\"></a>\n\n## Closures"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "JavaScript and Python both have closures.  In JS they are used more often to create private variables.  But have many uses and we will talk about stateful functions and private variables\n\nA closure in JavaScript is a function that has access to variables in its outer scope, even after the outer function has returned. The closure \"closes over\" the variables in its outer scope, keeping them accessible even after the outer function has completed. This allows for data persistence and stateful function behavior. Closures are created when a function is declared inside another function and the inner function references variables from the outer function."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "### Stateful Functions"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "What we can see in this example is the inner function is incremeting the value of x that waas defined in the outer function.  The outher function is returning the unexecuted version of the inner function.\n\nwhen we try\n\n```\nadder=outer()\n```\n\nWe are setting the variable adder to the unexecuted function inner. so adder is the inner funtion from our enclosure.\n\nthen to execute that inner funcer and actually start incrementing our x value we can execute adder().\n\n<strong>Note</strong> that the value of x is maintained over multiple calls to the inner function, this is the benefit of the enclosure.\n\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "//simple example\r\n\r\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "### Closures as Private Variables"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "One Problem we may have seen while exploring the ES5 syntax is that you can change the variables from outside of your class.  If someone changes a variable that shouldn't be changed this could spell disaster.  TypeScript (we will learn next week) will help use greatly with this along with the ES 6 syntax for creating classes.  But what if we wanted a private variable in ES5?  Well Closures also help us with that.  We will use a self-invoking function to create the encolsure."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "#### Self Invoking Function"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "A Self Invoking Function is merely a name given to a function that calls itself.  We use parathesis to wrap the function then add `(params)` to execute the function."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "// Non self invoking:\r\n\r\n// Step 1 - Create the function\r\n\r\n\r\n// Step 2 - Invoke the funcion\r\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "// IIFE - Immediately Invoked Function Expression\r\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "#### Private Variable"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "<a id=\"stack\"></a>\n\n## JavaScript Call Stack"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "JS uses a Call Stack to add processes to the stack that executes the process.\nThe stack runs in Chrome's V8 engine, which also contains WebAPIs. Things that run asynchronously (not in the queue with other commands) are sent to the WebAPI to await their turn to be added to the stack. The stack must be cleared before the WebAPI can add the asynchronous process. This is why you often see `setTimeout()` set to a timeout of zero seconds. This is not saying to wait zero seconds and then execute this process; it is saying to wait for the stack to clear before running it.\n\n\nRecommended Video: <a href=\"https://www.youtube.com/watch?v=8aGhZQkoFbQ\">https://www.youtube.com/watch?v=8aGhZQkoFbQ</a>\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "console.log('Above timeout');\r\n\r\nsetTimeout(() => { console.log('In the timeout') }, 2000);\r\n\r\nconsole.log('Below timeout');"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "console.log('Above timeout');\r\n\r\nsetTimeout(() => { console.log('In the timeout') }, 0);\r\n\r\nconsole.log('Below timeout');"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "function first(){\r\n    console.log('Start');\r\n    setTimeout(() => {\r\n        console.log('First');\r\n    }, 2000)\r\n}\r\n\r\n\r\nfunction second(){\r\n    console.log('Second');\r\n}\r\n\r\n\r\n\r\nfirst();\r\nsecond();"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "Below the initial call stack will look like:\n\ntfunc3()\n\ntfunc2()\n\ntfunc1()\n\nThis is because tfunc1 calls tfunc2 which calls tfunc3.  Then tfunc3 will execute then tfunc2 then tfunc1. Now that all those have processed, the stack is clear and the setTime will come from the WebAPIs and be ran even though it was called first.\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "var tfunc1 = () => { tfunc2() }\r\n\r\nvar tfunc2 = () => { tfunc3() }\r\n\r\nvar tfunc3 = () => { console.log('Hello') }\r\n\r\nsetTimeout(() => console.log('In the timeout'), 0)\r\n\r\n\r\ntfunc1();"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "<a id=\"callback\"></a>\n\n## Callbacks"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "Simply put: A Callback is a function that is to be executed after another\n    function has finished its execution - hence the name callback.\n\n   More Complex Definition: In JavaScript, functions are objects. Because of this,\n    functions can take other functions as arguments(parameters), and can return functions\n    by other functions.\n\n   Functions that do this are called \"higher - Order functions\". Any function,\n    that is passed as an argument is called a \"Callback function\".\n\n   SOOOO...why do we need them?\n\n   The reason for this is, because of the JavaScript Event Loop. In a nutshell\n    JavaScript is an event driven language so this means, that instead of waiting for \n    a response before moving on, JS will keep executing while listening for other events.\n\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "\n   Thought Callbacks give us more functionality...they also introduce\n    their own problem: Callback Hell\n\n   Something that looks like this:\n   ```\n    function1( () => {\n        function2( () => {\n            function3( () => {\n                function4( () => {\n                    // Maybe do something here... 🤷🏾‍♂️\n                })\n            })\n        })\n    })\n```"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "<a id=\"promise\"></a>\n\n## Promises"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "A Promise in JS is basically a promise that the function will do the requested action and then return that result back when it is finished.  This will run asynchronously on the WebAPIs.  \n\nEach Promise can either be fulfilled, meaning it has got the answer for you; pending meaning it hasn't finished yet, and rejected meaning something went wrong.\n\nThe Promise object supports two properties: state and result.\n\nWhile a Promise object is \"pending\" (working), the result is undefined.\n\nWhen a Promise object is \"fulfilled\", the result is a value.\n\nWhen a Promise object is \"rejected\", the result is an error object."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "#### Still pending"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "#### Resolving the Promise"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "Using a chain of callbacks and .then/.catch/.finally we can resolve the promise and recieve its output\n\n`.then((resultOfPromise)=>{do something with result})` this will resolve the promise when it becomes fulfilled.\n\n`.catch((error)=>{do something based on the error})` this will run if the promise returns an error\n\n`.finally(()=>{do something after promise has been fulfilled or rejected})`"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "<a id=\"async\"></a>\n\n### Async Await"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "Async Await is another way to reolve your promises, that is a bit more clear than the .then.catch chain\n\nTo do this we use the key word `await` in front of the promise call.\n\nAny function that is awaiting something must be labeled as `async`.\n\nYou can not await something at the top level of your code"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "#### Handling an Error"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "### Async with Arrow Functions"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "In arrow functions the `async` keyword goes before the parameter list\n\n\n```const arrow_func = async () =>{\n    await some```"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "<a id=\"ice6\"></a>\n\n### In Class Assignment #6"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "In the 2 cells Provided resolve the `login` promise using .then/.catch and using async await (for async await create an async function) to login in `codingtemple` with the password `ctrules` be sure to handle rejection in both cases."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                ""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "//.then .catch\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "// async await\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n"
+            ],
+            "outputs": []
+        }
+    ]
+}
