@@ -10,7 +10,7 @@
         {
             "language": "markdown",
             "source": [
-                "[Switch Case](#switch)<br>\r\n[Objects](#object)<br>\r\n&emsp;[Deleting Keys](#del)<br>\r\n&emsp;[Exercise #1](#ice1)<br>\r\n&emsp;[Destructuring](#destruct)<br>\r\n&emsp;[Spread Operator (...)](#spread)<br>\r\n&emsp;[Rest Operator (...)](#rest)<br>\r\n&emsp;[Exercise #2](#ice2)<br>\r\n&emsp;[Optional Chaining (.?)](#chain)<br>\r\n&emsp;[Null Coalescing Operator (??)](#nco)<br>\r\n&emsp;[Object Equality](#objeq)<br>\r\n&emsp;[Testing Empty Objects](#emptyobj)<br>\r\n[For Loops with Objects](#loop)<br>\r\n&emsp;[Traditional Loop](#tradloop)<br>\r\n&emsp;[Exercise #3](#ice3)<br>\r\n&emsp;[for in Loop](#forin)<br>\r\n&emsp;[Exercise #4](#ice4)<br>\r\n[this keyword](#this)<br>\r\n[Checking Object/Array Type](#typecheck)<br>\r\n[ES5 Object Prototypes](#proto)<br>\r\n&emsp;[New Keyword](#new)<br>\r\n[Closures](#closure)<br>\r\n[Class keyword](#class)<br>\r\n&emsp;[Inheritance](#inherit)<br>\r\n&emsp;[Exercise #5](#ice5)<br>\r\n[JS and the Call Stack](#stack)<br>\r\n[Call Back Functions](#callback)<br>\r\n[Promises](#promise)<br>\r\n&emsp;[Async Await](#async)<br>\r\n&emsp;[Exercise #6](#ice6)<br>\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n"
+                "[Switch Case](#switch)<br>\n[Objects](#object)<br>\n&emsp;[Deleting Keys](#del)<br>\n&emsp;[Exercise #1](#ice1)<br>\n&emsp;[Destructuring](#destruct)<br>\n&emsp;[Spread Operator (...)](#spread)<br>\n&emsp;[Rest Operator (...)](#rest)<br>\n&emsp;[Exercise #2](#ice2)<br>\n&emsp;[Optional Chaining (.?)](#chain)<br>\n&emsp;[Null Coalescing Operator (??)](#nco)<br>\n&emsp;[Object Equality](#objeq)<br>\n&emsp;[Testing Empty Objects](#emptyobj)<br>\n[For Loops with Objects](#loop)<br>\n&emsp;[Traditional Loop](#tradloop)<br>\n&emsp;[Exercise #3](#ice3)<br>\n&emsp;[for in Loop](#forin)<br>\n&emsp;[Exercise #4](#ice4)<br>\n[this keyword](#this)<br>\n[Checking Object/Array Type](#typecheck)<br>\n[ES5 Object Prototypes](#proto)<br>\n&emsp;[New Keyword](#new)<br>\n[Closures](#closure)<br>\n[Class keyword](#class)<br>\n&emsp;[Inheritance](#inherit)<br>\n&emsp;[Exercise #5](#ice5)<br>\n[JS and the Call Stack](#stack)<br>\n[Call Back Functions](#callback)<br>\n[Promises](#promise)<br>\n&emsp;[Async Await](#async)<br>\n&emsp;[Exercise #6](#ice6)<br>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
             ],
             "outputs": []
         },
@@ -460,6 +460,25 @@
             "outputs": []
         },
         {
+            "language": "javascript",
+            "source": [
+                "console.log(person2['progLanguages'][2]);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "C++",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
             "language": "markdown",
             "source": [
                 "##### a) \"Blue\""
@@ -521,7 +540,7 @@
         {
             "language": "javascript",
             "source": [
-                "console.log(person2.teams[1].football);\n\n// why does brack notation on football not work?"
+                "console.log(person2.teams[1].football);\n\n// Remember to use '' if using bracket notation"
             ],
             "outputs": [
                 {
@@ -599,23 +618,21 @@
         {
             "language": "javascript",
             "source": [
-                ""
+                "// Array destructuring: \nlet primcolors = ['red', 'yellow', 'blue']\nlet [r, y, b] = primcolors\nconsole.log(r);"
             ],
-            "outputs": []
-        },
-        {
-            "language": "javascript",
-            "source": [
-                ""
-            ],
-            "outputs": []
-        },
-        {
-            "language": "javascript",
-            "source": [
-                ""
-            ],
-            "outputs": []
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "red",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "language": "markdown",
@@ -634,16 +651,36 @@
         {
             "language": "javascript",
             "source": [
-                ""
+                "// Variable names MUST be property key name\n\nlet shoe1 = {\n    color: 'blue',\n    brand: 'Adidas',\n    size: 10\n};\n\nlet {size, color, brand} = shoe1;\n\nconsole.log(size);\nconsole.log(brand);\nconsole.log(color);"
             ],
             "outputs": []
         },
         {
             "language": "javascript",
             "source": [
-                ""
+                "// you can declare new vars using they decoupled object again if you want\n\ns = size;\nb = brand;\nc = color;\nconsole.log(s);\nconsole.log(b);\nconsole.log(c);"
             ],
             "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "let car1 = {\n    carColor: 'pink',\n    make: 'Ford',\n    model: 'F-150'\n};\n\nlet {carColor, make, model} = car1;\nconsole.log(carColor);\n\nconsole.log(`I just bought a ${carColor} ${make} ${model} and I'm so excited!`)\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "pink",
+                                "I just bought a pink Ford F-150 and I'm so excited!",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "language": "markdown",
@@ -662,9 +699,44 @@
         {
             "language": "javascript",
             "source": [
-                ""
+                "function destructureArray(arr){\n    console.log(arr[0])\n    console.log(arr[1])\n    console.log(arr[2])\n}\n\ndestructureArray(['a', 'b', 'c']);"
             ],
-            "outputs": []
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "a",
+                                "b",
+                                "c",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "function destructureArray2([x, y, z]){\n    console.log(x)\n    console.log(y)\n    console.log(z)\n}\n\ndestructureArray(['a', 'b', 'c', 'd', 'e', 'f']);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "a",
+                                "b",
+                                "c",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "language": "markdown",
@@ -676,9 +748,44 @@
         {
             "language": "javascript",
             "source": [
-                "//Without destructuring\r\n"
+                "// This is a way you can utilize key word arguments in JS \n//Without destructuring\n\nfunction logShoeInfo(shoeObj){\n    console.log(shoeObj.color)\n    console.log(shoeObj.brand)\n    console.log(shoeObj.size)\n};\n\nlogShoeInfo(shoe1);"
             ],
-            "outputs": []
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "blue",
+                                "Adidas",
+                                "10",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "let shoe2 = {\n    size: 12,\n    color: 'green',\n    brand: 'Puma'\n};\n\nlogShoeInfo(shoe2);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "green",
+                                "Puma",
+                                "12",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "language": "markdown",
@@ -690,23 +797,44 @@
         {
             "language": "javascript",
             "source": [
-                "//With Destructuring \r\n"
+                "//With Destructuring \n\nfunction logShoe({ color, size, brand}){\n    console.log(color)\n    console.log(size)\n    console.log(brand)\n};\n\nlogShoe(shoe1);"
             ],
-            "outputs": []
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "blue",
+                                "10",
+                                "Adidas",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "language": "javascript",
             "source": [
-                ""
+                "// Nice thing - if we have more stuff than we need, we can still just grab a few things!\n\nlet radicalShoe = {\n    brand: 'Rad',\n    color: 'Tie-Dye',\n    size: 11,\n    secondaryColor: 'black',\n    hiTops: true\n};\n\nlogShoe(radicalShoe);\n// & if it the variable doesn't have a matching key property, it will give back 'undefined'"
             ],
-            "outputs": []
-        },
-        {
-            "language": "javascript",
-            "source": [
-                ""
-            ],
-            "outputs": []
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Tie-Dye",
+                                "11",
+                                "Rad",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "language": "markdown",
@@ -718,16 +846,51 @@
         {
             "language": "javascript",
             "source": [
-                "let personJones={\r\n    firstName:\"Russel\",\r\n    lastName:\"Jones\",\r\n    nickName:\"Ol' Dirty Illegitimate Child\",\r\n    age: 35,\r\n    height:62\r\n}\r\n\r\nlet quote = `Here I go, deep type flow, Jackques Costueau could never get this low.`\r\n"
+                "let personJones={\n    firstName:\"Russel\",\n    lastName:\"Jones\",\n    nickName:\"Ol' Dirty Illegitimate Child\",\n    age: 35,\n    height:62\n}\n\nlet quote = `Here I go, deep type flow, Jackques Costueau could never get this low.`\n"
             ],
             "outputs": []
         },
         {
             "language": "javascript",
             "source": [
-                ""
+                "function sayIt(aQuote, { firstName, lastName, nickName, age, height }){\n    console.log(`\"${aQuote}\"`)\n    console.log(`By ${firstName} \"${nickName}\" ${lastName}\\nAge: ${age}, Height: ${height}`)\n};\n\nsayIt(quote, personJones);"
             ],
-            "outputs": []
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "\"Here I go, deep type flow, Jackques Costueau could never get this low.\"",
+                                "By Russel \"Ol' Dirty Illegitimate Child\" Jones",
+                                "Age: 35, Height: 62",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "let personMe = {\n    firstName: 'Lexie',\n    lastName: 'Young',\n    nickName: 'Cool Gal',\n    age: 99,\n    height: 99\n};\n\nsayIt(\"Ilove JavaScript!\", personMe);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "\"Ilove JavaScript!\"",
+                                "By Lexie \"Cool Gal\" Young",
+                                "Age: 99, Height: 99",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "language": "markdown",
@@ -746,9 +909,34 @@
         {
             "language": "javascript",
             "source": [
-                ""
+                "// These can be used with both Arrays and Objects!\n// You can: \n// 1) COPY an object\n// 2) COMBINE multiple objects\n// 3) ADD a new key WHILE COPYING an object"
             ],
             "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "let person1 = {\n    name: 'Janet',\n    city: 'Louisville',\n    isGoodCoder: true\n};\n\nconsole.table(person1);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "┌─────────────┬──────────────┐",
+                                "│ (index)     │ Values       │",
+                                "├─────────────┼──────────────┤",
+                                "│ name        │ 'Janet'      │",
+                                "│ city        │ 'Louisville' │",
+                                "│ isGoodCoder │ true         │",
+                                "└─────────────┴──────────────┘",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "language": "markdown",
@@ -760,9 +948,27 @@
         {
             "language": "javascript",
             "source": [
-                ""
+                "let janet = {...person1};\nconsole.table(janet);"
             ],
-            "outputs": []
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "┌─────────────┬──────────────┐",
+                                "│ (index)     │ Values       │",
+                                "├─────────────┼──────────────┤",
+                                "│ name        │ 'Janet'      │",
+                                "│ city        │ 'Louisville' │",
+                                "│ isGoodCoder │ true         │",
+                                "└─────────────┴──────────────┘",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "language": "markdown",
@@ -774,9 +980,28 @@
         {
             "language": "javascript",
             "source": [
-                "//add an id of 187 to the person object and save it as a new object called newPerson\r\n"
+                "//add an id of 187 to the person object and save it as a new object called newPerson\n\n\nlet newPerson1 = {...person1, id: 187};\nconsole.table(newPerson1);\n"
             ],
-            "outputs": []
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "┌─────────────┬──────────────┐",
+                                "│ (index)     │ Values       │",
+                                "├─────────────┼──────────────┤",
+                                "│ name        │ 'Janet'      │",
+                                "│ city        │ 'Louisville' │",
+                                "│ isGoodCoder │ true         │",
+                                "│ id          │ 187          │",
+                                "└─────────────┴──────────────┘",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "language": "markdown",
@@ -788,14 +1013,26 @@
         {
             "language": "javascript",
             "source": [
-                ""
+                "let obj1 = {a: 123, b: 456}\nlet obj2 = {c: 789, d:10}\n\nlet obj3 = {...obj1, ...obj2};\nconsole.log(obj3);"
             ],
-            "outputs": []
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "{ a: 123, b: 456, c: 789, d: 10 }",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "language": "javascript",
             "source": [
-                ""
+                "let objA = {id: '10001', name: 'Item A', price: 5.99};\nlet objB = {price: 9.55, description: 'Great New Item'}\n\n// Both have a price key word"
             ],
             "outputs": []
         },
@@ -809,16 +1046,26 @@
         {
             "language": "javascript",
             "source": [
-                ""
+                "// If we COMBINE two objects with a common key word:\n\nlet objAB = {...objA, ...objB};\nconsole.log(objAB);\n\n\n// It will take the second stated object's key word and will replace/override the first value \n// ** KEEP THIS IN MIND!"
             ],
-            "outputs": []
-        },
-        {
-            "language": "javascript",
-            "source": [
-                ""
-            ],
-            "outputs": []
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "{",
+                                "  id: '10001',",
+                                "  name: 'Item A',",
+                                "  price: 9.55,",
+                                "  description: 'Great New Item'",
+                                "}",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "language": "markdown",
@@ -837,14 +1084,66 @@
         {
             "language": "javascript",
             "source": [
-                "restTestObj={\r\n    id:1,\r\n    title: \"test\",\r\n    body: \"My Test\",\r\n    author: \"Stephen King\"\r\n}\r\n"
+                "let restTestObj={\n    id: 1,\n    title: \"test\",\n    body: \"My Test\",\n    author: \"Stephen King\"\n}\n\nlet {title, author, ...otherStuff} = restTestObj;\n\nconsole.log(title);\nconsole.log(author);\nconsole.log(otherStuff);"
             ],
-            "outputs": []
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.error",
+                            "value": {
+                                "name": "Error",
+                                "message": "Failed to generate code object, Cannot read properties of undefined (reading 'type')",
+                                "stack": ""
+                            }
+                        }
+                    ]
+                }
+            ]
         },
         {
             "language": "javascript",
             "source": [
-                "// If the property is not in the object, the variable will be undefined\r\n\r\nlet country = {\r\n    name: 'USA',\r\n    capital: 'Washington, D.C.',\r\n    founded: 1776\r\n}\r\n"
+                "let restTestObj = {\n    id: 1,\n    title: 'test',\n    body: 'My Test',\n    author: 'Stephen King'\n}\n\nlet { title, author, ...other} = restTestObj\nconsole.log(title)\nconsole.log(author)\nconsole.log(other)\n\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.error",
+                            "value": {
+                                "name": "Error",
+                                "message": "Failed to generate code object, Cannot read properties of undefined (reading 'type')",
+                                "stack": ""
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "// If the property is not in the object, the variable will be undefined\n\nlet country = {\n    name: 'USA',\n    capital: 'Washington, D.C.',\n    founded: 1776\n}\n\nlet {population} = country;\nconsole.log(population);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "undefined",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "let student = {\n\n}"
             ],
             "outputs": []
         },
@@ -865,14 +1164,7 @@
         {
             "language": "javascript",
             "source": [
-                ""
-            ],
-            "outputs": []
-        },
-        {
-            "language": "javascript",
-            "source": [
-                "// This:\r\nlet { studentName, grade, teacher } = student;\r\n\r\n// is equivalent to this:\r\nlet studentName = student.studentName;\r\nlet grade = student.grade;\r\nlet teacher = student.teacher;\r\n\r\n\r\n// ^ The above will throw an error because of let declarations (example only)"
+                "// This:\nlet { studentName, grade, teacher } = student;\n\n// is equivalent to this:\nlet studentName = student.studentName;\nlet grade = student.grade;\nlet teacher = student.teacher;\n\n\n// ^ The above will throw an error because of let declarations (example only)"
             ],
             "outputs": []
         },
@@ -893,14 +1185,14 @@
         {
             "language": "javascript",
             "source": [
-                "var destructMe={\r\n    title: \"Intro to JavaScript\",\r\n    body: \"I really wish JavaScript had static type checking\",\r\n    createdOn: new Date(),\r\n    author: \"Kevin Beier\",\r\n    topic: \"Programming\",\r\n    tags: [\"JS\", \"Async\", \"Dynamic Types\"]\r\n}"
+                "var destructMe={\n    title: \"Intro to JavaScript\",\n    body: \"I really wish JavaScript had static type checking\",\n    createdOn: new Date(),\n    author: \"Kevin Beier\",\n    topic: \"Programming\",\n    tags: [\"JS\", \"Async\", \"Dynamic Types\"]\n}"
             ],
             "outputs": []
         },
         {
             "language": "javascript",
             "source": [
-                "//Solution\r\n\r\n\r\n\r\n\r\n//OUTPUT:\r\n/*\r\nIntro to JavaScript I really wish JavaScript had static type checking Kevin Beier\r\n{\r\n  createdOn: 2023-06-07T16:18:31.133Z,\r\n  topic: 'Programming',\r\n  tags: [ 'JS', 'Async', 'Dynamic Types' ]\r\n}\r\n*/"
+                "//Solution\n\n\n\n\n//OUTPUT:\n/*\nIntro to JavaScript I really wish JavaScript had static type checking Kevin Beier\n{\n  createdOn: 2023-06-07T16:18:31.133Z,\n  topic: 'Programming',\n  tags: [ 'JS', 'Async', 'Dynamic Types' ]\n}\n*/"
             ],
             "outputs": []
         },
@@ -942,7 +1234,7 @@
         {
             "language": "javascript",
             "source": [
-                "\r\n"
+                "\n"
             ],
             "outputs": []
         },
@@ -956,7 +1248,7 @@
         {
             "language": "javascript",
             "source": [
-                "movies = [\r\n    { id: 1, title: 'Oppenheimer', releaseYear: 2023, studio: { name: 'Warner Bros'}},\r\n    { id: 2, title: 'The Dark Knight', releaseYear: 2009, studio: { name: 'Sony'}},\r\n    { id: 3, title: 'Gladiator', releaseYear: 2001}\r\n]"
+                "movies = [\n    { id: 1, title: 'Oppenheimer', releaseYear: 2023, studio: { name: 'Warner Bros'}},\n    { id: 2, title: 'The Dark Knight', releaseYear: 2009, studio: { name: 'Sony'}},\n    { id: 3, title: 'Gladiator', releaseYear: 2001}\n]"
             ],
             "outputs": []
         },
@@ -970,7 +1262,7 @@
         {
             "language": "javascript",
             "source": [
-                "// condition ? if true : if false\r\n"
+                "// condition ? if true : if false\n"
             ],
             "outputs": []
         },
@@ -991,7 +1283,7 @@
         {
             "language": "javascript",
             "source": [
-                "\r\n"
+                "\n"
             ],
             "outputs": []
         },
@@ -1005,7 +1297,7 @@
         {
             "language": "javascript",
             "source": [
-                "\r\n\r\n"
+                "\n\n"
             ],
             "outputs": []
         },
@@ -1061,7 +1353,7 @@
         {
             "language": "javascript",
             "source": [
-                "// Same applies to arrays - must be same object in memory\r\n"
+                "// Same applies to arrays - must be same object in memory\n"
             ],
             "outputs": []
         },
@@ -1089,14 +1381,14 @@
         {
             "language": "javascript",
             "source": [
-                "// To see if an array is empty, you can use the .length property (remember 0 evaluates to false)\r\n"
+                "// To see if an array is empty, you can use the .length property (remember 0 evaluates to false)\n"
             ],
             "outputs": []
         },
         {
             "language": "javascript",
             "source": [
-                "// To see if an object is empty, first use the keys method to get array of keys, check that length\r\n"
+                "// To see if an object is empty, first use the keys method to get array of keys, check that length\n"
             ],
             "outputs": []
         },
@@ -1201,14 +1493,14 @@
         {
             "language": "javascript",
             "source": [
-                "var herbie={\r\n    wheels:\"4\",\r\n    color: \"white\",\r\n    make: \"VW\",\r\n    model: \"Beetle\",\r\n    year: 1963,\r\n    number: 53\r\n}"
+                "var herbie={\n    wheels:\"4\",\n    color: \"white\",\n    make: \"VW\",\n    model: \"Beetle\",\n    year: 1963,\n    number: 53\n}"
             ],
             "outputs": []
         },
         {
             "language": "javascript",
             "source": [
-                "//Solution\r\n\r\n\r\n\r\n"
+                "//Solution\n\n\n\n"
             ],
             "outputs": []
         },
@@ -1236,7 +1528,7 @@
         {
             "language": "javascript",
             "source": [
-                "var cities = ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix'];\r\n"
+                "var cities = ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix'];\n"
             ],
             "outputs": []
         },
@@ -1278,14 +1570,14 @@
         {
             "language": "javascript",
             "source": [
-                "var kit={\r\n    wheels:\"4\",\r\n    color: \"black\",\r\n    make: \"Pontiac\",\r\n    model: \"Thunderbird\",\r\n    year: 1981,\r\n    number: null\r\n}"
+                "var kit={\n    wheels:\"4\",\n    color: \"black\",\n    make: \"Pontiac\",\n    model: \"Thunderbird\",\n    year: 1981,\n    number: null\n}"
             ],
             "outputs": []
         },
         {
             "language": "javascript",
             "source": [
-                "//solution\r\n\r\n\r\n\r\n\r\n"
+                "//solution\n\n\n\n\n"
             ],
             "outputs": []
         },
@@ -1376,7 +1668,7 @@
         {
             "language": "javascript",
             "source": [
-                "console.log(\"Outside of function:\", this);\r\nconsole.log('--------------------------------------------------------------------------------')\r\nconsole.log(\"Regular Function:\", myTestObj.getThisReg());\r\nconsole.log('--------------------------------------------------------------------------------')\r\n\r\nconsole.log(\"Arrow Function:\", myTestObj.getThisArrow());"
+                "console.log(\"Outside of function:\", this);\nconsole.log('--------------------------------------------------------------------------------')\nconsole.log(\"Regular Function:\", myTestObj.getThisReg());\nconsole.log('--------------------------------------------------------------------------------')\n\nconsole.log(\"Arrow Function:\", myTestObj.getThisArrow());"
             ],
             "outputs": []
         },
